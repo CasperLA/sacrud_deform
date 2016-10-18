@@ -27,8 +27,16 @@ class HTMLText(object):
             return str(self.text)   # pragma: no cover
 
 
+from uuid import UUID
+class ComplexEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, UUID):
+            return str(obj)
+        # Let the base class default method raise the TypeError
+        return json.JSONEncoder.default(self, obj)
+
 def get_pk(obj):
-    return json.dumps(pk_to_list(obj))
+    return json.dumps(pk_to_list(obj), cls=ComplexEncoder)
 
 
 def _sa_row_to_choises(rows):
