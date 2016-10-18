@@ -24,6 +24,10 @@ setup(
     description='Form generator for SQLAlchemy models.',
     long_description=read('README.rst'),
     install_requires=read('requirements.txt'),
+    dependency_links=[
+        "git+https://github.com/CasperLA/sacrud.git#egg=sacrud",
+        "git+https://github.com/CasperLA/ColanderAlchemy.git#egg=colanderalchemy"
+    ],
     tests_require=read('requirements.txt') + read('requirements-test.txt'),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
